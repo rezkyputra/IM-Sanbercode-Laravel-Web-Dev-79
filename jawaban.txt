@@ -1,0 +1,32 @@
+1. Buat Database
+CREATE database library79;
+
+2. Buat Table
+- Table genres
+CREATE TABLE genres( id integer PRIMARY KEY AUTO_INCREMENT, name varchar(255) NOT null );
+
+- Table books
+CREATE TABLE books( id int AUTO_INCREMENT PRIMARY KEY, title varchar(255) NOT null, price int NOT null, stock int NOT null, genre_id int NOT null, FOREIGN KEY (genre_id) REFERENCES genres(id) );
+
+3. Insert Data
+genres
+- INSERT INTO genres (name) VALUES("novel"), ("Manga"), ("Pendidikan");
+
+books
+INSERT INTO books (title, price, stock, genre_id) VALUES("perahu kertas", 30000, 30, 1);
+INSERT INTO books (title, price, stock, genre_id) VALUES("Ayah", 40000, 20, 1);
+INSERT INTO books (title, price, stock, genre_id) VALUES("Algoritma untuk pemula", 45000, 25, 3);
+
+4. Select Data
+4a 
+SELECT id, title, price, stock from books;
+
+4b
+SELECT * from books WHERE price > 31000;
+SELECT * from books WHERE title LIKE "%kertas%";
+
+4c
+SELECT books.*, genres.name as genre FROM books INNER JOIN genres ON books.genre_id = genres.id;
+
+5. update data
+UPDATE books SET price=50000 WHERE id = 1;
